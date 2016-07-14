@@ -1,0 +1,2 @@
+#Description
+最近Cloudshare项目进行前后端分离的重构，后端采用RESTful API返回JSON数据，前端尝试使用React，因此创建这个repo学习搭建前端开发工程环境。

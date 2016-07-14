@@ -1,0 +1,19 @@
+{
+  "name": "cloudshare",
+  "version": "1.0.0",
+  "description": "Cloudshre Front-end Develop Enviroment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kabessC/CloudshareFEDevEnv.git"
+  },
+  "author": "kabessC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kabessC/CloudshareFEDevEnv/issues"
+  },
+  "homepage": "https://github.com/kabessC/CloudshareFEDevEnv#readme"
+}

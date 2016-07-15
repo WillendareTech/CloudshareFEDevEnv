@@ -1,6 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
+
+const development = require('./dev.config.js');
+
+process.env.BABEL_ENV = TARGET;
 
 const PATHS = {
   ROOT_PATH: path.join(__dirname, '../'),
@@ -19,7 +24,7 @@ const config = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
-  
+
   module: {
     loaders: [
       {
@@ -42,4 +47,8 @@ const config = {
   ]
 }
 
-module.exports = config;
+// module.exports = config;
+
+if (TARGET === 'start' || !TARGET) {
+  module.exports = merge(development, config);
+}

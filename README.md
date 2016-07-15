@@ -20,6 +20,7 @@
 * output: 打包输出文件
 * module: 模块加载器
 * plugins: 附加的插件
+* resolve: 指定可以import的文件后缀
 
 [更多配置项参考文档](https://github.com/webpack/docs/wiki/configuration#configuration-object-content)
 
@@ -43,7 +44,7 @@ html-webpack-plugin插件可以帮助我们快速生成html
 
 安装: `npm install html-webpack-plugin --save-dev`<br>
 
-** webpack.config.js编写 **
+#### webpack.config.js编写
 
 ```
 const path = require('path');
@@ -86,6 +87,7 @@ webpack-dev-server是一个开发服务器，每当我们更新代码时会自�
 #### 配置webpack-dev-server
 
 ##### Hot Module Replacement with node.js API
+
 HMR是webpack中的模块热更换，在更新代码时不再刷新整个页面，而是更新变化的部分。
 
 要使用nodejs API使用HMR，有三个步骤需要做：
@@ -93,7 +95,9 @@ HMR是webpack中的模块热更换，在更新代码时不再刷新整个页面�
 * 在webpack配置项插件中增加`new webpack.HotModuleReplacementPlugin()`
 * 增加 `hot:true` 在webpack-dev-server配置项中
 
+
 ##### 详细配置
+
 server.js
 
 ```
@@ -114,7 +118,7 @@ const server = new WebpackDevServer(compiler, {
 
   hot: true,  //启动热加载
 
-  historyApiFallback: false,
+  historyApiFallback: true,
 
   compress: true,  //启用gzip压缩
 
@@ -145,3 +149,54 @@ plugins: [
 ```
 
 执行`npm start`启动服务
+
+[webpack-dev-server官方文档](http://webpack.github.io/docs/webpack-dev-server.html)
+
+## 3.Babel与React
+为了能够使用ES6特性并且向下支持浏览器，需要用到Babel
+
+安装babel:
+
+`npm install babel-core babel-loader babel-preset-es2015 babel-preset-react --save-dev`
+
+在webpack中配置加载器
+
+```
+const config = {
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.js|jsx$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        include: PATHS.APP_PATH
+      }
+    ]
+  }
+}
+```
+
+在根目录中添加Babel配置文件.babelrc
+
+```
+{
+  "preset": ["es2015", "react"]
+}
+```
+
+安装react和react-dom:
+
+`npm install react react-dom --save`
+
+> **Note:** 由于React需要在app中run，所以使用--save比--save-dev更好一些
+
+安装react热模块替换(HMR)
+
+`npm install babel-preset-react-hmre --save-dev`
+
+在.babelrc增加
+
+`presets: ["react-hmre"]`

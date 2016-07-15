@@ -44,6 +44,18 @@ html-webpack-plugin插件可以帮助我们快速生成html
 
 安装: `npm install html-webpack-plugin --save-dev`<br>
 
+**html-webpack-plugin部分属性简介**
+
+* template  //html模板文件
+* inject    //允许修改的内容
+* filename  //生成的html文件存放路径
+* minify:   //压缩HTML文件
+  * removeComments:true | false         //移除HTML中的注释
+  * collapseWhitespace: true | false   //删除空白符与换行符
+* hash      //为静态资源增加hash
+
+---
+
 #### webpack.config.js编写
 
 ```
@@ -79,6 +91,8 @@ module.exports = config;
 
 结果在dist目录下面会生成index.html和bundle.js，前者是html-webpack-plugin生成的html,后者是wepack构建之后的js文件。
 
+---
+
 ### 安装webpack-dev-server
 webpack-dev-server是一个开发服务器，每当我们更新代码时会自动刷新浏览器，省去了人工刷新页面的烦恼
 
@@ -95,6 +109,7 @@ HMR是webpack中的模块热更换，在更新代码时不再刷新整个页面�
 * 在webpack配置项插件中增加`new webpack.HotModuleReplacementPlugin()`
 * 增加 `hot:true` 在webpack-dev-server配置项中
 
+---
 
 ##### 详细配置
 
@@ -230,6 +245,8 @@ const merge = require('webpack-merge');
 
 const development = require('./dev.config.js');
 
+const TARGET = process.env.npm_lifecycle_event;
+
 process.env.BABEL_ENV = TARGET;
 
 ...
@@ -252,3 +269,13 @@ if (TARGET === 'start' || !TARGET) {
   }
 }
 ```
+
+
+
+#参考
+* [Configuring React](http://survivejs.com/webpack/advanced-techniques/configuring-react/)
+* [Webpack傻瓜指南（三）和React配合开发](https://zhuanlan.zhihu.com/p/20522487)
+* [Using Webpack's Hot Module Replacement with React](http://matthewlehner.net/react-hot-module-replacement-with-webpack/)
+* [React-Redux-Flask](https://github.com/dternyak/React-Redux-Flask)
+* [Webpack | React 入门教程 - GitBook](https://hulufei.gitbooks.io/react-tutorial/content/webpack.html)
+* [Webpack Tutorials](http://webpack.github.io/docs/tutorials/getting-started/)

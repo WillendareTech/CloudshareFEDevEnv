@@ -15,7 +15,7 @@ const server = new WebpackDevServer(compiler, {
 
   hot: true,  //启动热加载
 
-  historyApiFallback: false,
+  historyApiFallback: true,
 
   compress: true,  //启用gzip压缩
 

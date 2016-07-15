@@ -16,6 +16,24 @@ const config = {
     filename: 'bundle.js'
   },
 
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
+  
+  module: {
+    loaders: [
+      {
+        test: /\.js|jsx$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        include: PATHS.APP_PATH,
+        query: {
+          preset: ['es2015', 'react']
+        }
+      }
+    ]
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Hello World'

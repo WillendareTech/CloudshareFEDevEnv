@@ -9,7 +9,7 @@ const PATHS = {
 }
 
 const config = {
-  entry: PATHS.APP_PATH,
+  entry: [PATHS.APP_PATH],
 
   output: {
     path: PATHS.BUILD_PATH,
@@ -18,8 +18,9 @@ const config = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Hello World App'
-    })
+      title: 'Hello World'
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
 }
 

@@ -1,4 +1,4 @@
-const wepack = require('webpack');
+const webpack = require('webpack');
 
 module.exports = {
   plugins: [

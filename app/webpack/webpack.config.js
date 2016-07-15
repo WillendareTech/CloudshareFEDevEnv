@@ -5,6 +5,8 @@ const merge = require('webpack-merge');
 
 const development = require('./dev.config.js');
 
+const TARGET = process.env.npm_lifecycle_event;
+
 process.env.BABEL_ENV = TARGET;
 
 const PATHS = {
@@ -18,7 +20,7 @@ const config = {
 
   output: {
     path: PATHS.BUILD_PATH,
-    filename: 'bundle.js'
+    filename: 'bundle.[hash].js'
   },
 
   resolve: {
@@ -31,17 +33,20 @@ const config = {
         test: /\.js|jsx$/,
         exclude: /node_modules/,
         loader: 'babel',
-        include: PATHS.APP_PATH,
-        query: {
-          preset: ['es2015', 'react']
-        }
+        include: PATHS.APP_PATH
       }
     ]
   },
 
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Hello World'
+      template: PATHS.APP_PATH + '/index.tpl.html',  //html模板文件
+      inject: 'body',  //允许修改的内容
+      filename: PATHS.BUILD_PATH + '/index.html',  //生成的html文件存放路径
+      minify:{    //压缩HTML文件
+        removeComments:true,    //移除HTML中的注释
+        collapseWhitespace:false    //删除空白符与换行符
+      }
     }),
     new webpack.HotModuleReplacementPlugin()
   ]

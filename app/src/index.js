@@ -1,3 +1,8 @@
-const moduleA = require('./module_a.js');
-moduleA();
-console.log('This is index.js.');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Header from './components/Header';
+
+ReactDOM.render(
+  <Header />,
+  document.getElementById('container')
+);

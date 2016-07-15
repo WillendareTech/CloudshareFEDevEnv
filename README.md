@@ -197,6 +197,58 @@ const config = {
 
 `npm install babel-preset-react-hmre --save-dev`
 
-在.babelrc增加
+~~在.babelrc增加~~
 
-`presets: ["react-hmre"]`
+~~`presets: ["react-hmre"]`~~
+
+鉴于热模块替换只需要在开发环境中使用，而不需要在生产环境中，因此可以利用一个BABEL_ENV环境变量来引入react-hmre
+
+在webpack目录中创建开发环境配置文件dev.config.js
+
+dev.config.js
+
+```
+const wepack = require('webpack');
+
+module.exports = {
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"development"'
+      },
+      __DEVELOPMENT__: true
+    }),
+    new webpack.NoErrorsPlugin()
+  ]
+}
+```
+
+webpack.config.js
+
+```
+const merge = require('webpack-merge');
+
+const development = require('./dev.config.js');
+
+process.env.BABEL_ENV = TARGET;
+
+...
+
+// module.exports = config;
+
+if (TARGET === 'start' || !TARGET) {
+  module.exports = merge(development, config);
+}
+```
+
+.babelrc增加
+
+```
+"env": {
+  "start": {
+    "presets": [
+      "react-hmre"
+    ]
+  }
+}
+```

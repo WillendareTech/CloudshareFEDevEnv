@@ -24,11 +24,27 @@
 [更多配置项参考文档](https://github.com/webpack/docs/wiki/configuration#configuration-object-content)
 
 ---
+### 示例
+* module_a.js
+```
+module.exports = function() {
+  console.log('This is module a.');
+}
+```
+* index.js
+```
+const moduleA = require('./module_a.js');
+moduleA();
+console.log('This is index.js.');
+```
+
 ### 安装html-webpack-plugin
-html-webpack-plugin插件可以帮助我们快速生成html<br>
+html-webpack-plugin插件可以帮助我们快速生成html
+
 安装: `npm install html-webpack-plugin --save-dev`<br>
 
-** webpack.config.js编写 **<br>
+** webpack.config.js编写 **
+
 ```
 const path = require('path');
 const webpack = require('webpack');
@@ -41,7 +57,7 @@ const PATHS = {
 }
 
 const config = {
-  entry: PATHS.APP_PATH,
+  entry: [PATHS.APP_PATH],
 
   output: {
     path: PATHS.BUILD_PATH,
@@ -57,3 +73,75 @@ const config = {
 
 module.exports = config;
 ```
+
+执行 `cd webpack && webpack`
+
+结果在dist目录下面会生成index.html和bundle.js，前者是html-webpack-plugin生成的html,后者是wepack构建之后的js文件。
+
+### 安装webpack-dev-server
+webpack-dev-server是一个开发服务器，每当我们更新代码时会自动刷新浏览器，省去了人工刷新页面的烦恼
+
+安装: `npm install webpack-dev-server --save-dev`
+
+#### 配置webpack-dev-server
+
+##### Hot Module Replacement with node.js API
+HMR是webpack中的模块热更换，在更新代码时不再刷新整个页面，而是更新变化的部分。
+
+要使用nodejs API使用HMR，有三个步骤需要做：
+* 在webpack配置项中增加`webpack/hot/dev-server`
+* 在webpack配置项插件中增加`new webpack.HotModuleReplacementPlugin()`
+* 增加 `hot:true` 在webpack-dev-server配置项中
+
+##### 详细配置
+server.js
+
+```
+const WebpackDevServer = require('webpack-dev-server');
+const webpack = require('webpack');
+const webpackConf = require('./webpack/webpack.config.js');
+
+const compiler = webpack(webpackConf);
+
+const server = new WebpackDevServer(compiler, {
+  //webpack-dev-server options
+
+  contentBase: './app/',
+
+  progress: true,
+
+  inline: true,  //启用inline模式自动刷新
+
+  hot: true,  //启动热加载
+
+  historyApiFallback: false,
+
+  compress: true,  //启用gzip压缩
+
+});
+
+webpackConf.entry.unshift('webpack-dev-server/client?http://localhost:8080/', 'webpack/hot/dev-server');
+
+server.listen(8080, 'localhost', function(err) {
+  if (err) {
+    console.log(err);
+  }
+  console.log('Listening at localhost:8080.');
+});
+```
+
+在webpack.config.js中增加
+```
+plugins: [
+  new webpack.HotModuleReplacementPlugin()
+]
+```
+
+在package.json增加
+```
+"scripts": {
+  "start": "node server.js"
+}
+```
+
+执行`npm start`启动服务

@@ -30,9 +30,14 @@ const config = {
   module: {
     loaders: [
       {
-        test: /\.js|jsx$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel',
+        include: PATHS.APP_PATH
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader?modules',
         include: PATHS.APP_PATH
       }
     ]

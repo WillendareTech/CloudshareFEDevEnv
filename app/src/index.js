@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './components/Header';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AutoCompleteComponent from './components/AutoCompleteComponent';
+
+const App = () => (
+  <MuiThemeProvider>
+    <AutoCompleteComponent />
+  </MuiThemeProvider>
+);
 
 ReactDOM.render(
-  <Header />,
+  <App />,
   document.getElementById('container')
 );

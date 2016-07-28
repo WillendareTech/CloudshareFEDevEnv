@@ -2,17 +2,17 @@ import React from 'react';
 
 export default class Footer extends React.Component {
   renderFilter(filter, name) {
-    if ( filter === this.props.filter ) {
+    if (filter === this.props.filter) {
       return name;
     }
 
     return (
       <a
-        href='#'
-        onClick={ e => { 
+        href="#"
+        onClick={e => {
           e.preventDefault();
-          this.props.onFilterChange(filter) 
-        } }
+          this.props.onFilterChange(filter);
+        }}
       >
       {name}
       </a>
@@ -40,6 +40,6 @@ Footer.propTypes = {
   filter: React.PropTypes.oneOf([
     'SHOW_ALL',
     'SHOW_COMPLETED',
-    'SHOW_ACTIVE'
-  ]).isRequired
+    'SHOW_ACTIVE',
+  ]).isRequired,
 };

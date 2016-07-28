@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+// import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import App from './containers/App';
-import todoApp from './reducers/reducer';
+// import App from './containers/App';
+import AsyncApp from './containers/AsyncApp';
+// import todoApp from './reducers/reducer';
 
-let store = createStore(todoApp);
+// let store = createStore(todoApp);
+import configureStore from './store/configureStore';
+
+const store = configureStore();
 
 ReactDOM.render(
-  <Provider store={ store }>
-    <App />
+  <Provider store={store}>
+    <AsyncApp />
   </Provider>,
   document.getElementById('container')
 );

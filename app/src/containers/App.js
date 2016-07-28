@@ -7,12 +7,12 @@ import Footer from '../components/Footer';
 const todoData = [
   {
     text: 'User Redux',
-    completed: true
+    completed: true,
   },
   {
     text: 'Learn to connect it to React',
-    completed: false
-  }
+    completed: false,
+  },
 ];
 
 export default class App extends React.Component {
@@ -20,16 +20,16 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <AddTodo 
-          onAddClick= { text => console.log('add todo', text) }
+        <AddTodo
+          onAddClick={text => console.log('add todo', text)}
         />
-        <TodoList 
-          todos={ todoData }
-          onTodoClick={ todo => console.log('todo clicked', todo) }
+        <TodoList
+          todos={todoData}
+          onTodoClick={todo => console.log('todo clicked', todo)}
         />
         <Footer
-          filter='SHOW_ALL'
-          onFilterChange={ filter => console.log('filter change', filter) }
+          filter="SHOW_ALL"
+          onFilterChange={filter => console.log('filter change', filter)}
         />
       </div>
     );

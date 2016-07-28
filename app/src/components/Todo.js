@@ -1,23 +1,20 @@
 import React from 'react';
 
-export default class Todo extends React.Component {
-  render() {
-    return (
-      <li
-        onClick={ this.props.onClick }
-        style={{
-          textDecoration: this.props.completed ? 'line-through' : 'none',
-          cursor: this.props.completed ? 'default' : 'pointer'
-        }}
-      >
-        { this.props.text }
-      </li>
-    );
-  }
-}
+const Todo = (props) =>
+  <li
+    onClick={props.onClick}
+    style={{
+      textDecoration: props.completed ? 'line-through' : 'none',
+      cursor: props.completed ? 'default' : 'pointer',
+    }}
+  >
+    {props.text}
+  </li>;
+
+export default Todo;
 
 Todo.propTypes = {
   onClick: React.PropTypes.func.isRequired,
   text: React.PropTypes.string.isRequired,
-  completed: React.PropTypes.bool.isRequired
+  completed: React.PropTypes.bool.isRequired,
 };

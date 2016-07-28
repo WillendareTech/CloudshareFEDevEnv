@@ -4,7 +4,7 @@ export default class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      counter: 0
+      counter: 0,
     };
   }
 
@@ -12,7 +12,7 @@ export default class Header extends Component {
     this.interval = setInterval(
       this.increment.bind(this),
       1000
-    )
+    );
   }
 
   increment() {

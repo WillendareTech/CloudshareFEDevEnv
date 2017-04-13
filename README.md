@@ -6,13 +6,39 @@ There is a document about front-end structure description for [Cloudshare](https
 
 ## List of Contents
 
+* [Build process of webpack](#build-process-of-webpack)
 * [File structure](#file-structure)
 * [List of tools or libraries](#list-of-tools-or-libraries)
-* [Build process of webpack](#build-process-of-webpack)
 * [How to do](#how-to-do)
 * [Reference](#reference)
 
 ---
+
+## Build process of webpack
+![webpack process](image/cloudshare.png)
+
+---
+
+## List of tools or libraries
+
+* [react](https://github.com/facebook/react): A JavaScript library for build UI.
+* [ant-design](https://github.com/ant-design/ant-design): A react components library of ant-design.
+* [react-router](https://github.com/ReactTraining/react-router): React router solutions.
+* [webpack](https://github.com/webpack/webpack): A tool for bundle JavaScript, packing modules etc.
+* [babel](https://github.com/babel/babel): JavaScript compiler.
+* [less](https://github.com/less/less.js): CSS dynamic language.
+* [echarts](https://github.com/ecomfe/echarts): Baidu visualization library.
+* [eslint](https://github.com/eslint/eslint): A tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
+
+### webpack plugins
+
+* [webpack-dev-server](https://github.com/webpack/webpack-dev-server): A node server that provides live reloading on development.
+* [extract-text-webpack-plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin): Extract css text from bundle into file.
+* [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin): Create HTML files.
+* HotModuleReplacementPlugin: A plugin about exchanges, adds, or removes modules while an application is running without a page reload.
+
+---
+
 
 ## File structure
 
@@ -45,23 +71,6 @@ There is a document about front-end structure description for [Cloudshare](https
 
 ---
 
-## List of tools or libraries
-
-* [react](https://github.com/facebook/react): A JavaScript library for build UI.
-* [ant-design](https://github.com/ant-design/ant-design): A react components library of ant-design
-* [react-router](https://github.com/ReactTraining/react-router): React router solutions.
-* [webpack](https://github.com/webpack/webpack): A tool for bundle JavaScript, packing modules etc.
-* [babel](https://github.com/babel/babel): JavaScript compiler.
-* [less](https://github.com/less/less.js): CSS dynamic language.
-* [echarts](https://github.com/ecomfe/echarts): Baidu visualization library.
-
----
-
-## Build process of webpack
-![webpack process](image/cloudshare.png)
-
----
-
 ## How to do
 
 1. Install  
@@ -74,7 +83,15 @@ There is a document about front-end structure description for [Cloudshare](https
   ```
 
 3. Build  
-  On `webapp` folder, run ```sh ./build.sh```
+  ```
+  cd app/
+  npm run build:production
+  ```
+  or  
+  ```
+  cd webapp/
+  sh ./build.sh
+  ```
 
 ---
 

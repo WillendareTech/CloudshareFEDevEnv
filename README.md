@@ -51,7 +51,7 @@ There is a document about front-end structure description for [Cloudshare](https
 * [ant-design](https://github.com/ant-design/ant-design): A react components library of ant-design
 * [react-router](https://github.com/ReactTraining/react-router): React router solutions.
 * [webpack](https://github.com/webpack/webpack): A tool for bundle JavaScript, packing modules etc.
-* [babael](https://github.com/babel/babel): JavaScript compiler.
+* [babel](https://github.com/babel/babel): JavaScript compiler.
 * [less](https://github.com/less/less.js): CSS dynamic language.
 * [echarts](https://github.com/ecomfe/echarts): Baidu visualization library.
 
@@ -80,7 +80,7 @@ There is a document about front-end structure description for [Cloudshare](https
 
 ## Reference
 
-You can find the office document of packages through use [Google](https://www.google.com), and there are some blogs reference below content:
+You can find the offical document of packages through use [Google](https://www.google.com), and there are some blogs reference below content:
 
 * [Configuring React](http://survivejs.com/webpack/advanced-techniques/configuring-react/)
 * [Using Webpack's Hot Module Replacement with React](http://matthewlehner.net/react-hot-module-replacement-with-webpack/)

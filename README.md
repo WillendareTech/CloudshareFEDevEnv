@@ -74,7 +74,10 @@ There is a document about front-end structure description for [Cloudshare](https
 ## How to do
 
 1. Install  
-  On `app` folder, run ```npm install```
+  ```
+  cd app/
+  npm install
+  ```
 
 2. Start server on developing environment  
   ```
